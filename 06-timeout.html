@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var xhr = new XMLHttpRequest();
+    //超过1秒仍未得到后端返回结果则取消本次请求
+    xhr.timeout = 1000;
+    //当Ajax请求被取消后会自动触发 ontimeout 事件
+    xhr.ontimeout = function () {
+        alert('请求超时');
+    }
+
+    xhr.onload = function () {
+        alert(xhr.responseText);
+    }
+
+    xhr.open('get', '/api/async');
+
+    xhr.send();
+    </script>
+</body>
+</html>

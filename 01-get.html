@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>get方式验证用户名</h1>
+    <form>
+    用户名: <input id="txt" type="text" name="name"><span id="s"></span><br>
+    密　码: <input type="password" name="pwd"><br>
+    <input type="submit" />
+    </form>
+
+    <script>
+    //1. 获取用户名文本框，注册失焦事件
+    document.getElementById('txt').onblur = function () {
+        //2. 获取用户名
+        var username = this.value;
+
+        //3. 实例化xhr对象
+        var xhr = new XMLHttpRequest();
+
+        //4. 调用open方法准备Ajax请求
+        //              /api/checkUser?username=aaa
+        xhr.open('get', '/api/checkUser?username=' + username);
+
+        //5. 发送Ajax请求
+        xhr.send();
+
+        //6. 调用 onreadystatechange 事件监听 readyState的值，当readyState=4
+        //的时候，使用 responseText 来接收后端返回的数据
+        xhr.onreadystatechange = function () {
+            document.getElementById('s').innerText = xhr.responseText;
+            if (xhr.readyState == 4) {
+                if (xhr.responseText == '用户名已被占用') {
+                    document.getElementById('s').style.color = 'red';
+                } else {
+                    document.getElementById('s').style.color = 'green';
+                }
+                
+            }
+        }
+    }
+    </script>
+
+</body>
+</html>

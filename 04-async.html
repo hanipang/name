@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            alert(xhr.responseText);
+        }
+    }
+
+    //参数3: true(异步、默认) 、false(同步)
+    xhr.open('get', '/api/async', false);
+
+    xhr.send()
+    </script>
+
+    <img src="1.jpg" alt="">
+</body>
+</html>

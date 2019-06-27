@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            alert(xhr.responseText);
+        }
+    }
+
+    //解决缓存问题，只需要在url地址之后增加随机后缀
+    // 随机后缀一般都两种方式： Math.random() \ Date.now()
+    xhr.open('get', '/api/getTime?a=' + Date.now());
+    xhr.send();
+    </script>
+</body>
+</html>

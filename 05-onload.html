@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var xhr = new XMLHttpRequest();
+
+    //使用onload事件来代替原来的 onreadystatechange事件和
+    //事件内部的判断。 因为onload只有在 readyState=4的时候触发
+    xhr.onload = function () {
+        alert(xhr.responseText);
+    }
+
+    xhr.open('get', '/api/getStr');
+    
+    xhr.send();
+    </script>
+</body>
+</html>
